@@ -9,7 +9,6 @@ export default class ExamplePlugin extends Plugin {
         const selection = editor.getSelection();
         let regex_pattern = '\"\>(.*)\</font\>';
         let extract_result = selection.match(regex_pattern);
-        console.log(extract_result)
 	if (extract_result !== null )
         {
 	  let result = '';
@@ -29,7 +28,6 @@ export default class ExamplePlugin extends Plugin {
         const selection = editor.getSelection();
         let regex_pattern = '\"\>(.*)\</font\>';
         let extract_result = selection.match(regex_pattern);
-        console.log(extract_result)
 	if (extract_result !== null )
         {
 	  let result = '';
@@ -49,7 +47,6 @@ export default class ExamplePlugin extends Plugin {
         const selection = editor.getSelection();
         let regex_pattern = '\"\>(.*)\</font\>';
         let extract_result = selection.match(regex_pattern);
-        console.log(extract_result)
 	if (extract_result !== null )
         {
 	  let result = '';
