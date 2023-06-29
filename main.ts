@@ -65,6 +65,7 @@ export default class ExamplePlugin extends Plugin {
       editorCallback: (editor: Editor) => {
         const selection = editor.getSelection();
 	let regex_pattern = '\"\>(.*)\</font\>';  // not yet can do this (.*)regex(.*)regex(.*), cause sth broken in this (.*)\<font style=\"color:var\(--toggle-color-1\)\"\>(.*)\</font\>(.*)
+		// (.*)\<font style=\"color:var\\(--toggle-color-1\\)\"\>(.*)\</font\>(.*), need double \\ at parentheses, why?
         let extract_result = selection.match(regex_pattern);
         console.log(extract_result)
 	if (extract_result !== null )
