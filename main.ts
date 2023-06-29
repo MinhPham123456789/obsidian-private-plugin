@@ -31,11 +31,11 @@ export default class ExamplePlugin extends Plugin {
       name: "To Color X",
       editorCallback: (editor: Editor) => {
         const selection = editor.getSelection();
-	regex_pattern = '"(.*)\<font style=\"color:var\(--toggle-color-1\)\"\>(.*)\</font\>(.*)"gm';
-        extract_result = selection.match(regex_pattern);
+	let regex_pattern = '(.*)\<font style=\"color:var\(--toggle-color-1\)\"\>(.*)\</font\>(.*)';
+        let extract_result = selection.match(regex_pattern);
 	if (extract_result !== null )
         {
-	  result = '';
+	  let result = '';
           extract_result.forEach((x, i) => result = result + x);
 	  editor.replaceSelection(result);
 	}
