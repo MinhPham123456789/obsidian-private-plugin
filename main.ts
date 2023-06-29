@@ -3,19 +3,46 @@ import { Editor, Plugin } from "obsidian";
 export default class ExamplePlugin extends Plugin {
   async onload() {
     this.addCommand({
-      id: "to-green",
-      name: "To Green",
+      id: "to-color-2",
+      name: "To Color 2",
       editorCallback: (editor: Editor) => {
         const selection = editor.getSelection();
-        editor.replaceSelection('<font style="color:90EE90">' + selection + '</font>');
+        editor.replaceSelection('<font style="color:var(--toggle-color-2)">' + selection + '</font>');
       },
     });
     this.addCommand({
-      id: "to-red",
-      name: "To Red",
+      id: "to-color-1",
+      name: "To Color 1",
       editorCallback: (editor: Editor) => {
         const selection = editor.getSelection();
-        editor.replaceSelection('<font style="color:red">' + selection + '</font>');
+        editor.replaceSelection('<font style="color:var(--toggle-color-1)">' + selection + '</font>');
+      },
+    });
+    this.addCommand({
+      id: "to-color-3",
+      name: "To Color 3",
+      editorCallback: (editor: Editor) => {
+        const selection = editor.getSelection();
+        editor.replaceSelection('<font style="color:var(--toggle-color-3)">' + selection + '</font>');
+      },
+    });
+    this.addCommand({
+      id: "to-color-x",
+      name: "To Color X",
+      editorCallback: (editor: Editor) => {
+        const selection = editor.getSelection();
+	regex_pattern = '(*)\<font style="color:var\(--toggle-color-1\)"\>(*)\</font\>';
+        extract_result = selection.match(regex_pattern);
+	if (extract_result.length > 0)
+        {
+	  result = '';
+          extract_result.forEach((x, i) => result = result + x);
+	  editor.replaceSelection(result);
+	}
+        else
+        {
+          editor.replaceSelection('<font style="color:var(--toggle-color-1)">' + selection + '</font>');
+        }
       },
     });
     this.addCommand({
@@ -31,7 +58,7 @@ export default class ExamplePlugin extends Plugin {
       name: "To Bold",
       editorCallback: (editor: Editor) => {
         const selection = editor.getSelection();
-        editor.replaceSelection('**' + selection + '**');
+        editor.replaceSelection('<b>' + selection + '</b>');
       },
     });
     this.addCommand({
@@ -39,7 +66,7 @@ export default class ExamplePlugin extends Plugin {
       name: "To Italic",
       editorCallback: (editor: Editor) => {
         const selection = editor.getSelection();
-        editor.replaceSelection('*' + selection + '*');
+        editor.replaceSelection('<i>' + selection + '</i>');
       },
     });
   }
