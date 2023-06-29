@@ -31,8 +31,9 @@ export default class ExamplePlugin extends Plugin {
       name: "To Color X",
       editorCallback: (editor: Editor) => {
         const selection = editor.getSelection();
-	let regex_pattern = '(.*)\<font style=\"color:var\(--toggle-color-1\)\"\>(.*)\</font\>(.*)';
+	let regex_pattern = '\"\>(.*)\</font\>';
         let extract_result = selection.match(regex_pattern);
+        console.log(extract_result)
 	if (extract_result !== null )
         {
 	  let result = '';
