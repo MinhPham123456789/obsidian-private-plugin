@@ -7,7 +7,19 @@ export default class ExamplePlugin extends Plugin {
       name: "To Color 2",
       editorCallback: (editor: Editor) => {
         const selection = editor.getSelection();
-        editor.replaceSelection('<font style="color:var(--toggle-color-2)">' + selection + '</font>');
+        let regex_pattern = '\"\>(.*)\</font\>';
+        let extract_result = selection.match(regex_pattern);
+        console.log(extract_result)
+	if (extract_result !== null )
+        {
+	  let result = '';
+          extract_result.forEach((x, i) => {if (i!== 0) {result = result + x}});
+	  editor.replaceSelection(result);
+	}
+        else
+        {
+          editor.replaceSelection('<font style="color:var(--toggle-color-2)">' + selection + '</font>');
+        }
       },
     });
     this.addCommand({
@@ -15,7 +27,19 @@ export default class ExamplePlugin extends Plugin {
       name: "To Color 1",
       editorCallback: (editor: Editor) => {
         const selection = editor.getSelection();
-        editor.replaceSelection('<font style="color:var(--toggle-color-1)">' + selection + '</font>');
+        let regex_pattern = '\"\>(.*)\</font\>';
+        let extract_result = selection.match(regex_pattern);
+        console.log(extract_result)
+	if (extract_result !== null )
+        {
+	  let result = '';
+          extract_result.forEach((x, i) => {if (i!== 0) {result = result + x}});
+	  editor.replaceSelection(result);
+	}
+        else
+        {
+          editor.replaceSelection('<font style="color:var(--toggle-color-1)">' + selection + '</font>');
+        }
       },
     });
     this.addCommand({
@@ -23,7 +47,19 @@ export default class ExamplePlugin extends Plugin {
       name: "To Color 3",
       editorCallback: (editor: Editor) => {
         const selection = editor.getSelection();
-        editor.replaceSelection('<font style="color:var(--toggle-color-3)">' + selection + '</font>');
+        let regex_pattern = '\"\>(.*)\</font\>';
+        let extract_result = selection.match(regex_pattern);
+        console.log(extract_result)
+	if (extract_result !== null )
+        {
+	  let result = '';
+          extract_result.forEach((x, i) => {if (i!== 0) {result = result + x}});
+	  editor.replaceSelection(result);
+	}
+        else
+        {
+          editor.replaceSelection('<font style="color:var(--toggle-color-3)">' + selection + '</font>');
+        }
       },
     });
     this.addCommand({
@@ -31,13 +67,13 @@ export default class ExamplePlugin extends Plugin {
       name: "To Color X",
       editorCallback: (editor: Editor) => {
         const selection = editor.getSelection();
-	let regex_pattern = '\"\>(.*)\</font\>';
+	let regex_pattern = '\"\>(.*)\</font\>';  // not yet can do this (.*)regex(.*)regex(.*), cause sth broken in this (.*)\<font style=\"color:var\(--toggle-color-1\)\"\>(.*)\</font\>(.*)
         let extract_result = selection.match(regex_pattern);
         console.log(extract_result)
 	if (extract_result !== null )
         {
 	  let result = '';
-          extract_result.forEach((x, i) => result = result + x);
+          extract_result.forEach((x, i) => {if (i!== 0) {result = result + x}});
 	  editor.replaceSelection(result);
 	}
         else
