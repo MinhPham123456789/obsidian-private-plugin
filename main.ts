@@ -7,7 +7,7 @@ export default class ExamplePlugin extends Plugin {
       name: "To Color 2",
       editorCallback: (editor: Editor) => {
         const selection = editor.getSelection();
-        let regex_pattern = '\"\>(.*)\</font\>';
+        let regex_pattern = '(.*)\<font style=\"color:var\\(--toggle-color-2\\)\"\>(.*)\</font\>(.*)';
         let extract_result = selection.match(regex_pattern);
 	if (extract_result !== null )
         {
@@ -26,7 +26,7 @@ export default class ExamplePlugin extends Plugin {
       name: "To Color 1",
       editorCallback: (editor: Editor) => {
         const selection = editor.getSelection();
-        let regex_pattern = '\"\>(.*)\</font\>';
+        let regex_pattern = '(.*)\<font style=\"color:var\\(--toggle-color-1\\)\"\>(.*)\</font\>(.*)';
         let extract_result = selection.match(regex_pattern);
 	if (extract_result !== null )
         {
@@ -45,7 +45,7 @@ export default class ExamplePlugin extends Plugin {
       name: "To Color 3",
       editorCallback: (editor: Editor) => {
         const selection = editor.getSelection();
-        let regex_pattern = '\"\>(.*)\</font\>';
+        let regex_pattern = '(.*)\<font style=\"color:var\\(--toggle-color-3\\)\"\>(.*)\</font\>(.*)';
         let extract_result = selection.match(regex_pattern);
 	if (extract_result !== null )
         {
@@ -64,7 +64,7 @@ export default class ExamplePlugin extends Plugin {
       name: "To Color X",
       editorCallback: (editor: Editor) => {
         const selection = editor.getSelection();
-	let regex_pattern = '\"\>(.*)\</font\>';  // not yet can do this (.*)regex(.*)regex(.*), cause sth broken in this (.*)\<font style=\"color:var\(--toggle-color-1\)\"\>(.*)\</font\>(.*)
+	let regex_pattern = '\"\>(.*)\</font\>';  // not yet can do this (.*)regex(.*)regex(.*), cause sth broken in this (.*)\<font style=\"color:var\\(--toggle-color-1\\)\"\>(.*)\</font\>(.*)
         let extract_result = selection.match(regex_pattern);
         console.log(extract_result)
 	if (extract_result !== null )
@@ -84,7 +84,18 @@ export default class ExamplePlugin extends Plugin {
       name: "To Underlined",
       editorCallback: (editor: Editor) => {
         const selection = editor.getSelection();
-        editor.replaceSelection('<u>' + selection + '</u>');
+        let regex_pattern = '(.*)\<u\>(.*)\</u\>(.*)';
+        let extract_result = selection.match(regex_pattern);
+	if (extract_result !== null )
+        {
+	  let result = '';
+          extract_result.forEach((x, i) => {if (i!== 0) {result = result + x}});
+	  editor.replaceSelection(result);
+	}
+        else
+        {
+          editor.replaceSelection('<u>' + selection + '</u>');
+        }
       },
     });
     this.addCommand({
@@ -92,7 +103,18 @@ export default class ExamplePlugin extends Plugin {
       name: "To Bold",
       editorCallback: (editor: Editor) => {
         const selection = editor.getSelection();
-        editor.replaceSelection('<b>' + selection + '</b>');
+        let regex_pattern = '(.*)\<b\>(.*)\</b\>(.*)';
+        let extract_result = selection.match(regex_pattern);
+	if (extract_result !== null )
+        {
+	  let result = '';
+          extract_result.forEach((x, i) => {if (i!== 0) {result = result + x}});
+	  editor.replaceSelection(result);
+	}
+        else
+        {
+          editor.replaceSelection('<b>' + selection + '</b>');
+        }
       },
     });
     this.addCommand({
@@ -100,7 +122,18 @@ export default class ExamplePlugin extends Plugin {
       name: "To Italic",
       editorCallback: (editor: Editor) => {
         const selection = editor.getSelection();
-        editor.replaceSelection('<i>' + selection + '</i>');
+        let regex_pattern = '(.*)\<i\>(.*)\</i\>(.*)';
+        let extract_result = selection.match(regex_pattern);
+	if (extract_result !== null )
+        {
+	  let result = '';
+          extract_result.forEach((x, i) => {if (i!== 0) {result = result + x}});
+	  editor.replaceSelection(result);
+	}
+        else
+        {
+          editor.replaceSelection('<i>' + selection + '</i>');
+        }
       },
     });
   }
